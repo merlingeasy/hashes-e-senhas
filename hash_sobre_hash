@@ -1,0 +1,14 @@
+#!/bin/bash
+
+
+echo "Entre com o nome do arquivo"
+
+read arquivo
+
+for i in $(cat $arquivo);do 
+        md5=$(echo -n $i | md5sum | cut -d' ' -f1)
+        base=$(echo -n $md5 | base64 | cut -d' ' -f1)
+        sha=$(echo -n $base | sha1sum | cut -d' ' -f1)
+        echo "$i" "-" "$md5" "-" "$base" "-" "$sha"
+
+done
